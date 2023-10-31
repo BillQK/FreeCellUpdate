@@ -211,6 +211,7 @@ class FreecellGame {
     switch (srcPile.type) {
       case "cascade":
         src = this.getCascade()[srcPile.index];
+        if (!src) return false;
         cardSeq = src.slice(srcPile.cardIndex);
         if (!this.isBuild(srcPile.index, srcPile.cardIndex)) {
           return false;
@@ -218,6 +219,7 @@ class FreecellGame {
         break;
       case "open":
         src = this.getOpen()[srcPile.index];
+        if (!src) return false;
         cardSeq = new Array(src[0]);
         break;
       case "foundation":
@@ -235,6 +237,7 @@ class FreecellGame {
     switch (destPile.type) {
       case "cascade":
         dest = this.getCascade()[destPile.index];
+        if (!dest) return false;
         if (dest.length != 0) {
           let lastCard = dest[dest.length - 1];
           let firstCard = cardSeq[0];
@@ -245,6 +248,7 @@ class FreecellGame {
         break;
       case "open":
         dest = this.getOpen()[destPile.index];
+        if (!dest) return false;
         if (dest.length != 0) {
           return false;
         }
@@ -257,6 +261,7 @@ class FreecellGame {
           return false;
         }
         dest = this.getFoundation()[destPile.index];
+        if (!dest) return false;
         if (cardSeq.length != 1) {
           return false;
         }
